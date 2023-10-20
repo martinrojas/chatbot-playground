@@ -10,7 +10,7 @@
 	<div class="chat-image avatar">
 		<div class="w-10 rounded-full">
 			<img
-				src="https://ui-avatars.com/api/?name={type === 'user' ? 'Me' : 'Party City'}"
+				src="https://ui-avatars.com/api/?name={type === 'user' ? 'Me' : 'ChatGPT'}"
 				alt="{type} avatar"
 			/>
 		</div>

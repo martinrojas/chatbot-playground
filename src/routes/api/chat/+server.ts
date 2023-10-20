@@ -32,6 +32,8 @@ export const POST: RequestHandler = async ({ request }) => {
 			tokenCount += tokens;
 		});
 
+		if (tokenCount >= 4000) throw new Error('Query too large. Token count: ' + tokenCount);
+
 		const moderationRes = await fetch('https://api.openai.com/v1/moderations', {
 			headers: {
 				'content-type': 'application/json',
@@ -46,8 +48,6 @@ export const POST: RequestHandler = async ({ request }) => {
 		const [moderationResults] = moderationData.results;
 
 		if (moderationResults.flagged) throw new Error('Message flagged by OpenAI');
-
-		if (tokenCount >= 4000) throw new Error('Query too large. Token count: ' + tokenCount);
 
 		const messages: ChatCompletionRequestMessage[] = [...reqSystemPrompts, ...reqMessage];
 
